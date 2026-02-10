@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Load List</title>
+<link href="style.css" rel="stylesheet"/>
+<script src="https://unpkg.com/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script defer="" src="script.js"></script>
+</head>
+<body>
+<div class="container">
+<h1 class="title">Load List</h1><div class="card auth-card" id="authCard">
+<h2 class="auth-title">Sign in</h2>
+<div class="auth-grid">
+<div class="field">
+<label for="authEmail">Email</label>
+<input autocomplete="email" id="authEmail" placeholder="you@email.com" type="email"/>
+</div>
+<div class="field">
+<label for="authPassword">Password</label>
+<input autocomplete="current-password" id="authPassword" placeholder="••••••••" type="password"/>
+</div>
+</div>
+<div class="btn-row auth-btn-row">
+<button class="btn ghost" id="signUpBtn" type="button">Sign up</button>
+<button class="btn primary" id="signInBtn" type="button">Sign in</button>
+<button class="btn ghost hidden" id="signOutBtn" type="button">Sign out</button>
+</div>
+<p class="footer-note auth-msg" id="authMsg"></p>
+</div><div class="app-area hidden" id="appArea"><div class="card" id="data">
+<div class="field">
+<label for="Load_Number">Load Number</label>
+<input id="Load_Number" placeholder="Ex: 101" type="text"/>
+</div>
+<div class="field">
+<label for="Pick_Up_State">Pick Up State</label>
+<input id="Pick_Up_State" maxlength="2" placeholder="IL" type="text"/>
+</div>
+<div class="field">
+<label for="Delivery_State">Delivery State</label>
+<input id="Delivery_State" maxlength="2" placeholder="CA" type="text"/>
+</div>
+<div class="field date-field">
+<label for="Pick_Up_Date">Pick Up Date</label>
+<div class="input-icon">
+<span aria-hidden="true" class="icon">📅</span>
+<input id="Pick_Up_Date" type="date"/>
+</div>
+</div>
+<div class="field date-field">
+<label for="Delivery_Date">Delivery Date</label>
+<div class="input-icon">
+<span aria-hidden="true" class="icon">📅</span>
+<input id="Delivery_Date" type="date"/>
+</div>
+</div>
+<div class="field">
+<label for="Price">Price</label>
+<input id="Price" placeholder="5000 or $5000" type="text"/>
+</div>
+<div class="btn-row">
+<button class="btn primary" id="addBtn" type="button">Add</button>
+<button class="btn ghost" id="cancelBtn" type="button">Cancel</button>
+</div>
+</div><div class="sort-row">
+<label for="sortSelect">Sort</label>
+<div class="select-wrap">
+<select id="sortSelect">
+<option value="loadNumber">Load Number</option>
+<option value="pickupDate">Pick Up Date</option>
+<option value="deliveryDate">Delivery Date</option>
+</select>
+<span aria-hidden="true" class="select-caret">▾</span>
+</div>
+</div><div class="table-card">
+<table id="loadTable">
+<thead>
+<tr>
+<th>Load Number</th>
+<th>Pick Up State</th>
+<th>Delivery State</th>
+<th>Pick Up Date</th>
+<th>Delivery Date</th>
+<th>Price</th>
+<th class="actions-col">Actions</th>
+</tr>
+</thead>
+<tbody></tbody>
+</table>
+</div><p class="footer-note">Tip: Dates are stored for sorting, but shown as MM/DD/YYYY in the table.</p></div>
+
+
+
+
+</div>
+</body>
+</html>

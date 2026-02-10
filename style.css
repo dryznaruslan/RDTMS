@@ -1,0 +1,372 @@
+/* ========== Base ========== */
+* { box-sizing: border-box; }
+
+:root {
+  --bg: #0b1220;
+  --card: rgba(255, 255, 255, 0.06);
+  --card2: rgba(255, 255, 255, 0.04);
+  --border: rgba(255, 255, 255, 0.12);
+  --border2: rgba(255, 255, 255, 0.10);
+  --text: rgba(231, 234, 240, 0.95);
+  --muted: rgba(231, 234, 240, 0.70);
+  --muted2: rgba(231, 234, 240, 0.55);
+  --shadow: 0 10px 28px rgba(0,0,0,0.25);
+  --focus: rgba(99, 102, 241, 0.9);
+  --focusRing: rgba(99, 102, 241, 0.25);
+  --success: rgba(34, 197, 94, 0.9);
+  --successRing: rgba(34, 197, 94, 0.22);
+  --danger: rgba(248,113,113,0.35);
+}
+
+body {
+  margin: 0;
+  padding: 24px;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.container {
+  max-width: 1150px;
+  margin: 0 auto;
+}
+
+.title {
+  margin: 0 0 14px;
+  font-size: 24px;
+  letter-spacing: 0.2px;
+}
+
+/* ========== Cards / Layout ========== */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border2);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(8px);
+}
+
+#data {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(160px, 1fr));
+  gap: 12px;
+  align-items: end;
+}
+
+.field label {
+  display: block;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 6px;
+}
+
+.field input {
+  width: 100%;
+  padding: 12px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(0, 0, 0, 0.25);
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.field input::placeholder {
+  color: var(--muted2);
+}
+
+.field input:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+.field input:focus {
+  border-color: var(--focus);
+  box-shadow: 0 0 0 4px var(--focusRing);
+}
+
+/* ========== Date input with visible calendar icon ========== */
+.input-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon .icon {
+  position: absolute;
+  left: 12px;
+  font-size: 16px;
+  opacity: 0.95;
+  pointer-events: none;
+}
+
+.input-icon input[type="date"] {
+  padding-left: 40px; /* make space for icon */
+  cursor: pointer;
+  font-weight: 700;
+}
+
+/* Make the native calendar picker icon more visible (best effort) */
+.input-icon input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 1;
+  cursor: pointer;
+  transform: scale(1.25);
+  filter: invert(1);
+}
+
+.input-icon input[type="date"]:focus {
+  border-color: var(--success);
+  box-shadow: 0 0 0 4px var(--successRing);
+}
+
+/* ========== Buttons ========== */
+.btn-row {
+  display: flex;
+  gap: 10px;
+  grid-column: span 6;
+  justify-content: flex-end;
+  padding-top: 4px;
+}
+
+.btn {
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  transition: transform 0.08s ease, opacity 0.2s ease, background 0.2s ease;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn.primary {
+  background: #7dd3fc;
+  color: #0b1220;
+  border-color: transparent;
+}
+
+.btn.primary:hover { opacity: 0.92; }
+
+.btn.ghost {
+  background: rgba(255,255,255,0.06);
+  color: var(--text);
+}
+
+.btn.ghost:hover {
+  background: rgba(255,255,255,0.10);
+}
+
+/* ========== Sort row ========== */
+.sort-row {
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.sort-row label {
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.select-wrap {
+  position: relative;
+  min-width: 240px;
+}
+
+#sortSelect {
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  padding: 12px 44px 12px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(0, 0, 0, 0.28);
+
+  color: var(--text);
+  font-weight: 800;
+  cursor: pointer;
+  outline: none;
+
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+#sortSelect:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+#sortSelect:focus {
+  border-color: var(--focus);
+  box-shadow: 0 0 0 4px var(--focusRing);
+}
+
+.select-caret {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+#sortSelect option {
+  background: #0b1220;
+  color: var(--text);
+}
+
+/* ========== Table ========== */
+.table-card {
+  margin-top: 12px;
+  background: var(--card2);
+  border: 1px solid var(--border2);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+#loadTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#loadTable thead th {
+  text-align: left;
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 14px 12px;
+  background: rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid var(--border2);
+  color: rgba(231, 234, 240, 0.85);
+}
+
+#loadTable tbody td {
+  padding: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(231, 234, 240, 0.92);
+  vertical-align: middle;
+}
+
+#loadTable tbody tr:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+#loadTable tbody td:nth-child(6) {
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+/* Actions column buttons */
+.actions-col { width: 160px; }
+
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+.actions button {
+  padding: 9px 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.06);
+  color: rgba(231,234,240,0.95);
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.actions button:hover {
+  background: rgba(255,255,255,0.10);
+}
+
+.actions .delete-btn {
+  border-color: var(--danger);
+}
+
+/* Footer note */
+.footer-note {
+  margin-top: 10px;
+  color: var(--muted2);
+  font-size: 12px;
+}
+
+/* ========== Responsive ========== */
+@media (max-width: 1080px) {
+  #data {
+    grid-template-columns: repeat(3, minmax(160px, 1fr));
+  }
+  .btn-row {
+    grid-column: span 3;
+  }
+}
+
+@media (max-width: 680px) {
+  body { padding: 14px; }
+  #data {
+    grid-template-columns: 1fr;
+  }
+  .btn-row {
+    grid-column: span 1;
+    justify-content: stretch;
+  }
+  .btn {
+    width: 100%;
+  }
+  .sort-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .select-wrap {
+    min-width: 0;
+  }
+}
+
+
+/* ===== Supabase Auth UI ===== */
+.hidden { display: none !important; }
+
+.auth-card{
+  margin-top: 12px;
+}
+
+.auth-title{
+  margin: 0 0 10px;
+  font-size: 16px;
+}
+
+.auth-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  align-items: end;
+}
+
+@media (max-width: 680px){
+  .auth-grid{ grid-template-columns: 1fr; }
+}
+
+.auth-btn-row{
+  justify-content: flex-end;
+}
+
+.auth-msg{
+  margin: 8px 0 0;
+}
+
+/* When signed in, show the main app area */
+.app-area{
+  margin-top: 12px;
+}
